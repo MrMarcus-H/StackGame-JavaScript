@@ -1,37 +1,15 @@
-/*
+window.focus(); // This line of code sets the focus on the current window. This is done so that any key events are immediately captured by the window.
 
-Three.js + Cannon.js video tutorial explaining the source code
-
-Youtube: https://youtu.be/hBiGFpBle7E
-
-In the tutorial, we go through the source code of this game. We cover, how to set up a Three.js scene with box objects, how to add lights, how to set up the camera, how to add animation and event handlers, and finally, we add physics simulation with Cannon.js.
-
-Comparing to the tutorial this version has some extra features: 
-- autopilot mode before the game starts
-- introduction and result screens
-- score indicator showing the level of layers added
-- you can also control the game with touch events and by pressing the space key
-- you can reset the game
-- the game stops once a block went over the stack
-- once the game failed the last block falls down
-- the game reacts to window resizing
-
-Check out my YouTube channel for other game tutorials: https://www.youtube.com/channel/UCxhgW0Q5XLvIoXHAfQXg9oQ
-
-*/
-
-window.focus(); // Capture keys right away (by default focus is on editor)
-
-let camera, scene, renderer; // ThreeJS globals
-let world; // CannonJs world
-let lastTime; // Last timestamp of animation
-let stack; // Parts that stay solid on top of each other
-let overhangs; // Overhanging parts that fall down
-const boxHeight = 1; // Height of each layer
-const originalBoxSize = 3; // Original width and height of a box
-let autopilot;
-let gameEnded;
-let robotPrecision; // Determines how precise the game is on autopilot
+let camera, scene, renderer; // These are global variables that will be used for the Three.js library. camera will be used to control the viewpoint of the game, scene will contain all the objects to be rendered, and renderer will be used to display the scene to the user.
+let world; // This is a global variable that will be used for the Cannon.js physics engine. It will contain all the physical objects and control how they interact.
+let lastTime; // This variable will be used to keep track of the timestamp of the last animation frame. This is typically used in the animation loop to calculate the time difference between frames.
+let stack; // This variable will hold the parts of the game that stay solid on top of each other.
+let overhangs; // This variable will hold the parts of the game that overhang and fall down.
+const boxHeight = 1; // This constant defines the height of each layer in the game.
+const originalBoxSize = 3; // his constant defines the original width and height of a box in the game.
+let autopilot; // This variable will be used to determine if the game is in autopilot mode or not.
+let gameEnded; // This variable will be used to determine if the game has ended or not.
+let robotPrecision; // This variable will be used to determine how precise the game is on autopilot.
 
 const scoreElement = document.getElementById("score");
 const instructionsElement = document.getElementById("instructions");
